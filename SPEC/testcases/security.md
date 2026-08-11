@@ -236,15 +236,15 @@
 ## TC-SEC-021 公开仓库与演示资产脱敏
 
 - 关联 Spec / FR / User Story：SPEC-006 第9～11节；AC-006-09、AC-006-11
-- 测试目标：验证Git跟踪文件、README、验收报告、PNG、GIF和Release资产只包含合成数据。
+- 测试目标：验证Git跟踪文件、README、评测说明、PNG、GIF和Release资产只包含合成数据。
 - 前置条件：公开交付文件和媒体已生成并暂存。
 - 输入数据：git ls-files、Release材料包和全部公开媒体。
 - 执行步骤：运行密钥/绝对路径/PII模式扫描；检查图片和GIF帧；核对合成数据声明与验收报告字段。
 - 预期结果：无API Key、Authorization、请求ID、真实客户数据、本机路径或原始外部响应；媒体无终端和个人浏览器信息。
 - 异常或边界条件：EXIF元数据、隐藏帧、压缩包内部文件、示例.env和错误日志。
 - 自动化状态：MANUAL
-- 最近执行结果：PASS（2026-08-11；公开文档与媒体扫描通过，四张PNG和GIF人工复核，Release资产核对通过）。
-- 证据或日志引用：`scripts/check_release_docs.py`；`docs/assets/`；`docs/acceptance/poc-v0.1.0.md`；[v0.1.0 Release](https://github.com/silasxlx/creditguard-ai/releases/tag/v0.1.0)。
+- 最近执行结果：PASS（2026-08-11；公开主页、评测说明与媒体扫描通过，四张PNG和GIF人工复核，Release资产核对通过）。
+- 证据或日志引用：`scripts/check_release_docs.py`；`README.md`；`docs/evaluation.md`；`docs/assets/`；[v0.1.0 Release](https://github.com/silasxlx/creditguard-ai/releases/tag/v0.1.0)。
 
 ## TC-SEC-022 GitHub Workflow最小权限与Secrets隔离
 

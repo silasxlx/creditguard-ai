@@ -8,6 +8,7 @@ REQUIRED = [
     ROOT / "README.md",
     ROOT / "docs" / "architecture.md",
     ROOT / "docs" / "demo-guide.md",
+    ROOT / "docs" / "evaluation.md",
     ROOT / "docs" / "acceptance" / "poc-v0.1.0.md",
     ROOT / "CONTRIBUTING.md",
     ROOT / "SECURITY.md",
