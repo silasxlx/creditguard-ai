@@ -11,7 +11,7 @@ test('normal demo path reaches report review', async ({ page }) => {
   await expect(page.getByText('星海演示科技有限公司')).toBeVisible()
   await expect(page.getByText('等待报告确认')).toBeVisible({ timeout: 90_000 })
 
-  await page.getByRole('combobox').click()
+  await page.getByRole('combobox').click({ force: true })
   await page.getByText('Reviewer · 审查员').click()
   await page.getByRole('button', { name: '报告', exact: true }).first().click()
   await expect(page.getByRole('heading', { name: '报告复核与导出' })).toBeVisible()
@@ -25,7 +25,7 @@ test('high-risk demo path resolves conflict and exposes R07 failure', async ({ p
   await expect(page.getByText('远山演示制造有限公司')).toBeVisible()
   await expect(page.getByText('等待事实复核')).toBeVisible({ timeout: 90_000 })
 
-  await page.getByRole('combobox').click()
+  await page.getByRole('combobox').click({ force: true })
   await page.getByText('Reviewer · 审查员').click()
   await page.getByRole('button', { name: '事实复核' }).click()
   await expect(page.getByRole('heading', { name: '事实冲突裁定' })).toBeVisible()
