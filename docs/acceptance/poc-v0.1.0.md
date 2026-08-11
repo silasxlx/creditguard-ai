@@ -1,6 +1,6 @@
 # CreditGuard AI PoC v0.1.0 Acceptance Report
 
-**Status:** VERIFIED candidate; the public repository and release gates are being finalized.
+**Status:** DONE — v0.1.0 released.
 
 ## Scope
 
@@ -25,6 +25,8 @@ The release is a Windows-native, local-only PoC using synthetic cases, five synt
 - Generation model configuration: `qwen3.6-flash` (recorded per Run as `model_profile.requested_model`).
 - Default CI/PoC provider: deterministic `mock`; no external model or MinerU call is made by ordinary pull requests.
 - GitHub Actions evidence: [run 31459709982](https://github.com/silasxlx/creditguard-ai/actions/runs/31459709982).
+- Final release: [v0.1.0 PoC](https://github.com/silasxlx/creditguard-ai/releases/tag/v0.1.0), tagged from green commit `aecbba1`.
+- Main protection: required checks `backend`, `frontend`, `e2e`; force-push and deletion disabled.
 - All cases and published media are synthetic; no API key, raw provider response, request ID or local machine path is included.
 
 The local browser acceptance used the installed Chrome surface because the bundled Playwright Chromium download was unavailable in this environment. The checked-in Playwright tests remain the CI path; no browser result is claimed from the stalled local runner.
