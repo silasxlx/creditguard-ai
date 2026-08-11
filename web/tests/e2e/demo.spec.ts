@@ -34,9 +34,10 @@ test('high-risk demo path resolves conflict and exposes R07 failure', async ({ p
   await page.getByRole('button', { name: '提交事实裁定并继续' }).click()
   await expect(page).toHaveURL(/\/runs\/.*\/facts/)
   await page.getByRole('button', { name: '规则与风险' }).click()
-  await expect(page.getByText('R07', { exact: true })).toBeVisible({ timeout: 90_000 })
-  await expect(page.getByText('FAIL').first()).toBeVisible()
-  await expect(page.getByText('NON_COMPLIANT')).toBeVisible()
+  const ruleRow = page.getByRole('row').filter({ hasText: 'R07' })
+  await expect(ruleRow).toBeVisible({ timeout: 90_000 })
+  await expect(ruleRow).toContainText('FAIL')
+  await expect(page.getByText('NON_COMPLIANT', { exact: true })).toBeVisible()
 
   await page.getByRole('button', { name: '报告复核', exact: true }).click()
   await expect(page.getByText('AWAITING_REVIEW')).toBeVisible()
