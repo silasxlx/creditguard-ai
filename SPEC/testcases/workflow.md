@@ -355,18 +355,18 @@
 - 最近执行结果：PASS（2026-08-11；OpenAPI导出、TypeScript重生成和工作区差异检查通过）。
 - 证据或日志引用：`scripts/export_openapi.py`；`web/src/generated/openapi.ts`；`.github/workflows/ci.yml`。
 
-## TC-WF-029 README文档与演示媒体完整性
+## TC-WF-029 README精简主页与演示媒体完整性
 
-- 关联 Spec / FR / User Story：SPEC-006 第9、10节；AC-006-01、AC-006-09
-- 测试目标：验证README、架构、演示、验收、社区文档及固定PNG/GIF可公开使用。
-- 前置条件：SPEC-006已APPROVED；文档和媒体生成完成。
-- 输入数据：README、docs、社区文件和媒体清单。
-- 执行步骤：检查必需章节、相对链接、Mermaid、文件存在性、图片尺寸、GIF大小和合成数据声明。
-- 预期结果：所有链接有效；四张PNG和一张不超过8MB的GIF存在；无空占位、失效路径或未评审实现声明。
+- 关联 Spec / FR / User Story：SPEC-006 第9、10节；公开主页精简版 V1.1
+- 测试目标：验证README以重点工程项目为入口，保留四张演示截图和GIF，并能引导读者运行系统。
+- 前置条件：主页精简内容已确认；架构、演示和评测说明位于`docs/`。
+- 输入数据：README、docs、社区文件和演示媒体清单。
+- 执行步骤：检查必需章节、相对链接、截图/GIF存在性、README长度、合成数据声明以及`SPEC/`、`SPEC-003`和PoC关键字不出现在主页。
+- 预期结果：README在约100～130行范围内；所有链接有效；四张PNG和一张不超过8MB的GIF存在；主页无内部Spec入口或PoC定位。
 - 异常或边界条件：大小写路径差异、GitHub无法渲染、媒体超限、文档与实现状态不一致。
 - 自动化状态：AUTOMATED
-- 最近执行结果：PASS（2026-08-11；文档链接、媒体存在性、GIF大小和敏感模式检查通过；截图已人工复核）。
-- 证据或日志引用：`scripts/check_release_docs.py`；`docs/assets/`。
+- 最近执行结果：PASS（2026-08-11；README 63行，主页关键字检查、文档链接、媒体存在性、GIF大小和敏感模式检查通过；截图已人工复核）。
+- 证据或日志引用：`scripts/check_release_docs.py`；`README.md`；`docs/evaluation.md`；`docs/assets/`。
 
 ## TC-WF-030 GitHub CI分支保护与v0.1.0发布
 
