@@ -12,7 +12,7 @@ depends_on = None
 
 def upgrade() -> None:
     # Canonical table definitions live in app.models. This migration uses
-    # metadata creation for the SQLite PoC and remains explicit in the chain.
+    # metadata creation for the SQLite reference implementation and remains explicit in the chain.
     from sqlalchemy import create_engine
 
     from app.config import get_settings

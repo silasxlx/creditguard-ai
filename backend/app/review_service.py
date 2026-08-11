@@ -139,7 +139,7 @@ def evaluate_review_core(db: Session, run: ReviewRun) -> ReviewCoreResult:
         retrieval_hits.extend(serialized)
     retrieval_payload = {
         "schema_version": "1.0",
-        "producer": {"type": "retrieval", "version": "poc-1.0.0"},
+        "producer": {"type": "retrieval", "version": "credit-review-1.0.0"},
         "policy_pack_version": index.policy_pack_version,
         "index_manifest_hash": index.manifest_hash,
         "embedding_model": index.embedder.model_name,

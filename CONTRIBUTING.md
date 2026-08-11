@@ -1,12 +1,25 @@
 # Contributing
 
-CreditGuard AI follows the Spec-first workflow. Before changing code:
+感谢你对 CreditGuard AI 的关注。所有示例、测试和截图都必须使用合成数据。
 
-1. Read [SPEC/README.md](SPEC/README.md) and [SPEC-000 governance](SPEC/SPEC-000-project-governance.md).
-2. Discuss the requirement and update the relevant Spec/FR/ADR.
-3. Add acceptance criteria and a test case ID before implementation.
-4. Keep changes scoped and use synthetic data in tests and screenshots.
-5. Run the backend, frontend, security and contract checks that apply.
-6. Record the result and evidence in the corresponding test case and Spec.
+## 提交变更
 
-Do not commit `.env`, API keys, raw external responses, local database files, customer data or artifacts ignored by `.gitignore`.
+1. 先说明用户价值、变更范围和验收标准。
+2. 为新增功能、缺陷修复或架构变更增加对应测试。
+3. 覆盖正常、异常和边界路径，并记录测试结果。
+4. 不提交 `.env`、API Key、真实客户材料、外部服务原始响应、本机绝对路径或运行数据库。
+5. 保持 API Schema、前端生成类型和文档同步。
+
+## 本地检查
+
+根据变更范围运行后端、前端、评测、安全和浏览器检查。Pull Request 的 CI 使用确定性 Mock，不访问外部模型服务。
+
+## Pull Request
+
+请在 PR 描述中写明：
+
+- 变更背景和影响范围；
+- 验收标准；
+- 新增或更新的测试；
+- 已执行的检查及结果；
+- 尚未解决的限制或风险。

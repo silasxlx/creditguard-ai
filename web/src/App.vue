@@ -389,7 +389,7 @@ onUnmounted(() => {
       <div class="brand" role="button" tabindex="0" @click="go('/')" @keydown.enter="go('/')">
         <div class="brand-mark">CG</div>
         <div>
-          <p class="eyebrow">CREDITGUARD AI · POC</p>
+          <p class="eyebrow">CREDITGUARD AI · CREDIT REVIEW</p>
           <h1>授信智能合规审查工作台</h1>
         </div>
       </div>
@@ -425,7 +425,7 @@ onUnmounted(() => {
             <div>
               <p class="eyebrow">工作台 / 案件总览</p>
               <h2>把材料、制度与审查结论放在同一条证据链上</h2>
-              <p class="muted">PoC提供两条固定演示路径，也支持RM手工上传PDF、DOCX和XLSX材料。</p>
+              <p class="muted">提供两条固定演示路径，也支持 RM 手工上传 PDF、DOCX 和 XLSX 材料。</p>
             </div>
             <el-button v-if="role === 'RM'" type="primary" size="large" @click="go('/cases/new')">新建案件</el-button>
           </div>
@@ -548,7 +548,7 @@ onUnmounted(() => {
           </template>
         </template>
 
-        <footer class="footer-note">CreditGuard AI PoC · Spec-first · 纯合成数据 · AI辅助审查，不替代最终授信审批</footer>
+        <footer class="footer-note">CreditGuard AI · Evidence-first · 纯合成数据 · AI辅助审查，不替代最终授信审批</footer>
       </section>
     </div>
   </main>

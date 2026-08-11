@@ -79,7 +79,7 @@ def _docx_bytes(lines: list[str]) -> bytes:
 
     document = Document()
     document.add_heading("CreditGuard AI 合成演示材料", level=1)
-    document.add_paragraph("仅用于授信智能合规审查 PoC 演示，不代表真实客户资料。")
+    document.add_paragraph("Synthetic demonstration material for CreditGuard AI; not real customer data.")
     for line in lines:
         document.add_paragraph(line)
     output = BytesIO()

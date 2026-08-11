@@ -60,7 +60,7 @@ class ToolProfile:
 
 
 class ReadOnlyToolRegistry:
-    """Allowlisted, deterministic, read-only tools for the PoC."""
+    """Allowlisted, deterministic, read-only tools for the reference implementation."""
 
     ALLOWED = frozenset({"get_customer_profile", "get_credit_exposure", "check_blacklist"})
 

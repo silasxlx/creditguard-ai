@@ -1,8 +1,8 @@
 ## Summary
 
-## Spec and acceptance criteria
+## Scope and acceptance criteria
 
-- Spec / FR / ADR:
+- User value / issue:
 - Acceptance criteria:
 
 ## Tests
@@ -16,4 +16,4 @@
 ## Safety
 
 - [ ] No secrets, real customer data, raw external responses or local paths committed
-- [ ] Spec and test evidence updated
+- [ ] Documentation and test evidence updated

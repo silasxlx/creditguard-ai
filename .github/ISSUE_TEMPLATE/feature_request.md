@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Propose a scoped change through the Spec-first workflow
+about: Propose a scoped change with acceptance criteria and tests
 title: "[Feature] "
 labels: enhancement
 ---
@@ -13,4 +13,4 @@ labels: enhancement
 
 ## Test case IDs
 
-Please update the relevant Spec before implementation.
+Please include the expected user value, acceptance criteria and test coverage before implementation.

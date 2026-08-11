@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import shutil
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -13,7 +12,6 @@ sys.path.insert(0, str(ROOT / "backend"))
 
 from app.retrieval import build_policy_index  # noqa: E402
 from app.rules import load_rule_pack  # noqa: E402
-
 
 CASE_FILES = (
     "manifest.json",
@@ -399,12 +397,6 @@ def _write_case(root: Path, spec: CaseSpec, retrieval_gold: list[dict[str, Any]]
 def generate(root: Path, force: bool = False) -> int:
     root.mkdir(parents=True, exist_ok=True)
     policy_root = ROOT / "config" / "policies" / "synthetic-v1"
-    fixture_policy_root = ROOT / "fixtures" / "policies"
-    fixture_policy_root.mkdir(parents=True, exist_ok=True)
-    for source in sorted(policy_root.glob("*.md")):
-        destination = fixture_policy_root / source.name
-        if force or not destination.exists():
-            shutil.copyfile(source, destination)
     index = build_policy_index(policy_root)
     rule_pack = load_rule_pack(ROOT / "config" / "rules" / "rule-pack-v1.yaml")
     retrieval_gold = _retrieval_gold(index, rule_pack)
@@ -451,7 +443,7 @@ def main() -> int:
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "evals" / "credit-review-poc-v1" / "cases",
+        default=ROOT / "evals" / "credit-review-v1" / "cases",
         help="Offline evaluation case root",
     )
     parser.add_argument("--force", action="store_true", help="Overwrite generated fixture files")

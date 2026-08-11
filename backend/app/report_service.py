@@ -208,7 +208,7 @@ def build_report_payload(
         lines.append("- 存在需要人工处理或重试的不确定项，报告不得确认。")
     if risks.get("unsupported_claims"):
         lines.append("- 存在UNSUPPORTED风险项，已从正式结论中隔离。")
-    lines.append("- 本PoC不执行最终授信审批、额度决策或放款。")
+    lines.append("- This reference implementation does not perform final credit approval, limit decisions or disbursement.")
     markdown = "\n".join(lines) + "\n"
     report_hash = hashlib.sha256(markdown.encode("utf-8")).hexdigest()
     return {

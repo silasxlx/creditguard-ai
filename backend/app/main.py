@@ -54,9 +54,9 @@ async def lifespan(_app: FastAPI):
 
 
 app = FastAPI(
-    title="CreditGuard AI PoC",
+    title="CreditGuard AI",
     version="0.1.0",
-    description="授信智能合规审查平台PoC：材料事实、制度检索、规则、风险和报告复核。",
+    description="AI-assisted credit compliance review for synthetic corporate lending cases.",
     lifespan=lifespan,
 )
 

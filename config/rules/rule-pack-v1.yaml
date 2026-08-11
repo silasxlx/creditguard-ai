@@ -1,6 +1,6 @@
 schema_version: "1.0"
 version: "1.0.0"
-name: "credit-review-poc-rules"
+name: "credit-review-rules"
 allowed_operators:
   - eq
   - ne
