@@ -1,6 +1,6 @@
 # CreditGuard AI PoC v0.1.0 Acceptance Report
 
-**Status:** implementation evidence collected; release gates remain local until the public GitHub repository is created.
+**Status:** VERIFIED candidate; the public repository and release gates are being finalized.
 
 ## Scope
 
@@ -10,14 +10,22 @@ The release is a Windows-native, local-only PoC using synthetic cases, five synt
 
 | Gate | Result | Evidence |
 | --- | --- | --- |
-| Backend unit/contract/material tests | PASS | `pytest -p no:cacheprovider` targeted suite: 14 passed; full suite recorded during release run |
+| Backend unit/contract/material tests | PASS | `pytest -p no:cacheprovider`: 25 passed; two warnings only |
 | Ruff / Pyright | PASS | local backend checks |
 | Frontend type check/build | PASS | `npm.cmd --prefix web run check`, `build` |
 | Demo API flag/idempotency | PASS | normal, replay and unknown-scenario smoke |
-| Normal browser path | PASS | synthetic case reaches `AWAITING_REVIEW` report |
-| High-risk browser path | PASS | 48-month evidence -> R07 `FAIL` -> `NON_COMPLIANT` -> `CONFIRMED` |
+| Normal browser path | PASS | CI Windows Chromium E2E run `31459709982`; synthetic case reaches `AWAITING_REVIEW` report |
+| High-risk browser path | PASS | CI Windows Chromium E2E run `31459709982`; 48-month evidence -> R07 `FAIL` -> `NON_COMPLIANT` -> `CONFIRMED` |
+| RM manual upload path | PASS | CI Windows Chromium E2E run `31459709982`; four generated PDF/DOCX/XLSX files upload and start a Run |
 | OpenAPI contract export | PASS | `artifacts/openapi.json` and generated TypeScript file |
-| External API smoke | NOT RUN IN CI | requires explicit manual workflow and secrets |
+| External API smoke | NOT RUN IN CI | requires explicit manual workflow and secrets; local deterministic provider remains the default |
+
+## Release metadata
+
+- Generation model configuration: `qwen3.6-flash` (recorded per Run as `model_profile.requested_model`).
+- Default CI/PoC provider: deterministic `mock`; no external model or MinerU call is made by ordinary pull requests.
+- GitHub Actions evidence: [run 31459709982](https://github.com/silasxlx/creditguard-ai/actions/runs/31459709982).
+- All cases and published media are synthetic; no API key, raw provider response, request ID or local machine path is included.
 
 The local browser acceptance used the installed Chrome surface because the bundled Playwright Chromium download was unavailable in this environment. The checked-in Playwright tests remain the CI path; no browser result is claimed from the stalled local runner.
 

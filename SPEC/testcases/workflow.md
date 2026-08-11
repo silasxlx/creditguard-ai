@@ -312,8 +312,8 @@
 - 执行步骤：RM加载场景并查看材料/进度；切换Reviewer查看规则和证据；确认报告；切回RM查看并导出。
 - 预期结果：R01～R10全部PASS；Run进入WAITING_REPORT_REVIEW；Reviewer确认后COMPLETED；RM只能在确认后查看完整报告。
 - 异常或边界条件：Worker处理延迟、页面刷新、轮询失败和重复点击。
-- 自动化状态：MANUAL
-- 最近执行结果：PASS（2026-08-11；本地Chrome浏览器路径通过，报告进入`AWAITING_REVIEW`）。
+- 自动化状态：AUTOMATED + MANUAL
+- 最近执行结果：PASS（2026-08-11；本地Chrome浏览器路径通过，且GitHub Windows Chromium E2E运行`31459709982`通过，报告进入`AWAITING_REVIEW`）。
 - 证据或日志引用：`docs/assets/dashboard.png`、`docs/assets/report-review.png`；`web/tests/e2e/demo.spec.ts`（CI自动化用例）。
 
 ## TC-WF-026 高风险冲突裁定与R07失败浏览器演示
@@ -325,8 +325,8 @@
 - 执行步骤：RM加载场景；Reviewer查看两个期限候选及证据；选择尽调报告48个月并填写原因；恢复Run；查看R07和报告并确认。
 - 预期结果：裁定前WAITING_FACT_REVIEW；恢复后R07=FAIL、summary_outcome=NON_COMPLIANT；报告包含原值、采用值、证据和人工原因。
 - 异常或边界条件：空原因、过期快照、重复提交、选择24个月或刷新后恢复。
-- 自动化状态：MANUAL
-- 最近执行结果：PASS（2026-08-11；本地Chrome浏览器完成24/48冲突裁定、R07 FAIL、报告确认）。
+- 自动化状态：AUTOMATED + MANUAL
+- 最近执行结果：PASS（2026-08-11；本地Chrome浏览器完成24/48冲突裁定、R07 FAIL、报告确认；GitHub Windows Chromium E2E运行`31459709982`通过）。
 - 证据或日志引用：`docs/assets/fact-review.png`、`docs/assets/rule-results.png`、`docs/assets/report-review.png`；`web/tests/e2e/demo.spec.ts`（CI自动化用例）。
 
 ## TC-WF-027 RM手工创建上传与启动路径
@@ -338,9 +338,9 @@
 - 执行步骤：创建案件；逐份上传；核对材料类型和版本；选择当前有效版本；启动Run；查看进度。
 - 预期结果：四份材料均生成可见版本；Run返回202并进入Worker处理；重复写操作不创建重复资源。
 - 异常或边界条件：缺件、非法格式、重复文件、上传失败、过期案件版本和非RM角色。
-- 自动化状态：PLANNED
-- 最近执行结果：NOT_RUN（保留为独立的发布前门槛）。
-- 证据或日志引用：前端路径已实现于`web/src/App.vue`；待CI Chromium上传用例执行。
+- 自动化状态：AUTOMATED
+- 最近执行结果：PASS（2026-08-11；GitHub Windows Chromium E2E运行`31459709982`覆盖手工创建、四份材料上传和启动路径）。
+- 证据或日志引用：`web/tests/e2e/demo.spec.ts`；GitHub Actions运行`31459709982`。
 
 ## TC-WF-028 OpenAPI生成类型漂移检查
 
@@ -378,5 +378,5 @@
 - 预期结果：三个检查全绿；main禁止强推/删除；v0.1.0指向最终绿色提交；Release说明和资产可访问。
 - 异常或边界条件：仓库名冲突、CI失败、保护规则未生效、标签指向错误或Release资产缺失。
 - 自动化状态：MANUAL
-- 最近执行结果：NOT_RUN
-- 证据或日志引用：待发布后登记GitHub Actions、分支规则和Release链接。
+- 最近执行结果：IN_PROGRESS（2026-08-11；backend/frontend/e2e已在GitHub Actions运行`31459709982`通过，待完成分支保护、标签和Release核验）。
+- 证据或日志引用：GitHub Actions运行`31459709982`；待补充分支规则和Release链接。
