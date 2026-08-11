@@ -29,7 +29,7 @@ test('high-risk demo path resolves conflict and exposes R07 failure', async ({ p
   await page.getByText('Reviewer · 审查员').click()
   await page.getByRole('button', { name: '事实复核' }).click()
   await expect(page.getByRole('heading', { name: '事实冲突裁定' })).toBeVisible()
-  await page.getByRole('radio', { name: /48 due-diligence/ }).click()
+  await page.getByRole('radio', { name: /48 due-diligence/ }).click({ force: true })
   await page.locator('textarea').first().fill('尽调报告为最新审查材料，采用其期限值。')
   await page.getByRole('button', { name: '提交事实裁定并继续' }).click()
   await expect(page).toHaveURL(/\/runs\/.*\/facts/)
