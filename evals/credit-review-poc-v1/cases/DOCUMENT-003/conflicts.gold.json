@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0",
+  "conflicts": [],
+  "expected_gate": "WAITING_FACT_REVIEW",
+  "human_action_required": true
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "evaluate_rules": true,
+  "expected_statuses": {
+    "R01": "PASS",
+    "R02": "PASS",
+    "R03": "PASS",
+    "R04": "PASS",
+    "R05": "PASS",
+    "R06": "PASS",
+    "R07": "PASS",
+    "R08": "PASS",
+    "R09": "PASS",
+    "R10": "PASS"
+  },
+  "summary_outcome": "PASS",
+  "boundary_basis": {
+    "tenor_months": 24,
+    "leverage_percent": "38.46153846153847",
+    "current_ratio": "2.0",
+    "requested_amount": "1000000",
+    "available_amount": "1500000"
+  }
+}

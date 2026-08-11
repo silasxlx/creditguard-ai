@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "fields": {
+    "F01": {
+      "field": "F01",
+      "value": "合成科技有限公司",
+      "evidence_id": "rag-002-evidence-f01",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F02": {
+      "field": "F02",
+      "value": "91310000SYNTH001",
+      "evidence_id": "rag-002-evidence-f02",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F03": {
+      "field": "F03",
+      "value": "2020-01-01",
+      "evidence_id": "rag-002-evidence-f03",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F04": {
+      "field": "F04",
+      "value": "张三",
+      "evidence_id": "rag-002-evidence-f04",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F05": {
+      "field": "F05",
+      "value": "医药",
+      "evidence_id": "rag-002-evidence-f05",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F06": {
+      "field": "F06",
+      "value": "1000000",
+      "evidence_id": "rag-002-evidence-f06",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F07": {
+      "field": "F07",
+      "value": "CNY",
+      "evidence_id": "rag-002-evidence-f07",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F08": {
+      "field": "F08",
+      "value": 24,
+      "evidence_id": "rag-002-evidence-f08",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F09": {
+      "field": "F09",
+      "value": "流动资金",
+      "evidence_id": "rag-002-evidence-f09",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F10": {
+      "field": "F10",
+      "value": "5000000",
+      "evidence_id": "rag-002-evidence-f10",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F11": {
+      "field": "F11",
+      "value": "2000000",
+      "evidence_id": "rag-002-evidence-f11",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F12": {
+      "field": "F12",
+      "value": "3000000",
+      "evidence_id": "rag-002-evidence-f12",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F13": {
+      "field": "F13",
+      "value": "1500000",
+      "evidence_id": "rag-002-evidence-f13",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F14": {
+      "field": "F14",
+      "value": "8000000",
+      "evidence_id": "rag-002-evidence-f14",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    },
+    "F15": {
+      "field": "F15",
+      "value": "600000",
+      "evidence_id": "rag-002-evidence-f15",
+      "locator": {
+        "source": "credit-application-v1.docx",
+        "paragraph_index": 1
+      }
+    }
+  },
+  "requires_review": false,
+  "selected_conflict_fields": []
+}

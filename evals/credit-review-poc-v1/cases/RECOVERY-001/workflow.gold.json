@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "expected_nodes": [
+    "load_run",
+    "parse_materials",
+    "extract_facts",
+    "normalize_validate",
+    "detect_conflicts",
+    "retrieve_policies",
+    "tools_metrics_rules",
+    "synthesize_validate_risks",
+    "render_report"
+  ],
+  "initial_gate": null,
+  "required_hitl_gates": [
+    "HITL-2_REPORT_REVIEW"
+  ],
+  "final_status": "COMPLETED",
+  "recovery": {
+    "failure": "WORKER_LEASE_EXPIRED",
+    "attempts": 2
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "conflicts": [
+    {
+      "field": "F06",
+      "material": true,
+      "candidate_values": [
+        "1000000",
+        "1020000"
+      ],
+      "selected_value": "1020000",
+      "action": "SELECT_SOURCE"
+    }
+  ],
+  "expected_gate": null,
+  "human_action_required": true
+}

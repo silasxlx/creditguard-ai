@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "case_id": "RAG-001",
+  "category": "rag",
+  "scenario_tags": [
+    "query_template",
+    "cross_policy"
+  ],
+  "input_version": "v1",
+  "customer_key": "SYNTH-RAG-001",
+  "review_date": "2026-08-10",
+  "documents": [
+    {
+      "document_id": "rag-001-business_license",
+      "document_type": "BUSINESS_LICENSE",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "business_license-v1.docx"
+    },
+    {
+      "document_id": "rag-001-credit_application",
+      "document_type": "CREDIT_APPLICATION",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "credit_application-v1.docx"
+    },
+    {
+      "document_id": "rag-001-due_diligence",
+      "document_type": "DUE_DILIGENCE",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "due_diligence-v1.docx"
+    },
+    {
+      "document_id": "rag-001-financial_statements",
+      "document_type": "FINANCIAL_STATEMENTS",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "financial_statements-v1.docx"
+    }
+  ],
+  "synthetic_only": true,
+  "recovery": {}
+}

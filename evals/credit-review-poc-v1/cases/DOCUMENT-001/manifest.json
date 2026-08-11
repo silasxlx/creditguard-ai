@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DOCUMENT-001",
+  "category": "document",
+  "scenario_tags": [
+    "missing_material",
+    "hitl_1"
+  ],
+  "input_version": "v1",
+  "customer_key": "SYNTH-DOCUMENT-001",
+  "review_date": "2026-08-10",
+  "documents": [
+    {
+      "document_id": "document-001-business_license",
+      "document_type": "BUSINESS_LICENSE",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "business_license-v1.docx"
+    },
+    {
+      "document_id": "document-001-credit_application",
+      "document_type": "CREDIT_APPLICATION",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "credit_application-v1.docx"
+    },
+    {
+      "document_id": "document-001-due_diligence",
+      "document_type": "DUE_DILIGENCE",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "due_diligence-v1.docx"
+    }
+  ],
+  "synthetic_only": true,
+  "recovery": {}
+}

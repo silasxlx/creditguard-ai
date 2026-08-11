@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "case_id": "DOCUMENT-003",
+  "category": "document",
+  "scenario_tags": [
+    "xlsx_formula_cache_missing",
+    "hitl_1"
+  ],
+  "input_version": "v1",
+  "customer_key": "SYNTH-DOCUMENT-003",
+  "review_date": "2026-08-10",
+  "documents": [
+    {
+      "document_id": "document-003-business_license",
+      "document_type": "BUSINESS_LICENSE",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "business_license-v1.docx"
+    },
+    {
+      "document_id": "document-003-credit_application",
+      "document_type": "CREDIT_APPLICATION",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "credit_application-v1.docx"
+    },
+    {
+      "document_id": "document-003-due_diligence",
+      "document_type": "DUE_DILIGENCE",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "due_diligence-v1.docx"
+    },
+    {
+      "document_id": "document-003-financial_statements",
+      "document_type": "FINANCIAL_STATEMENTS",
+      "version": 1,
+      "status": "NEEDS_REVIEW",
+      "filename": "financial_statements-v1.docx"
+    }
+  ],
+  "synthetic_only": true,
+  "recovery": {}
+}

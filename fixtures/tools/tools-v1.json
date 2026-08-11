@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "synthetic_only": true,
+  "profiles": {
+    "SYNTH-RECOVERY-003": {
+      "failure_names": [
+        "check_blacklist"
+      ]
+    },
+    "SYNTH-BOUNDARY-004": {
+      "available_amount": "1500000"
+    }
+  },
+  "allowlist": [
+    "get_customer_profile",
+    "get_credit_exposure",
+    "check_blacklist"
+  ]
+}

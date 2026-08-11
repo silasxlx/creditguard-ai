@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "required_sections": [
+    "# 授信智能合规审查报告",
+    "## 1. 审查结论",
+    "## 2. 关键事实",
+    "## 3. 规则结果",
+    "## 4. 风险与待办",
+    "## 5. 制度依据",
+    "## 6. 工具状态",
+    "## 7. 限制与人工记录"
+  ],
+  "forbidden_fragments": [
+    "自动批准授信",
+    "授信审批已通过"
+  ],
+  "unsupported_claims_allowed": false,
+  "expected_summary_outcome": "PASS"
+}

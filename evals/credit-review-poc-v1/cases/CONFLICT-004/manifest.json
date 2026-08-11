@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "case_id": "CONFLICT-004",
+  "category": "conflict",
+  "scenario_tags": [
+    "financial_value_conflict",
+    "hitl_1"
+  ],
+  "input_version": "v1",
+  "customer_key": "SYNTH-CONFLICT-004",
+  "review_date": "2026-08-10",
+  "documents": [
+    {
+      "document_id": "conflict-004-business_license",
+      "document_type": "BUSINESS_LICENSE",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "business_license-v1.docx"
+    },
+    {
+      "document_id": "conflict-004-credit_application",
+      "document_type": "CREDIT_APPLICATION",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "credit_application-v1.docx"
+    },
+    {
+      "document_id": "conflict-004-due_diligence",
+      "document_type": "DUE_DILIGENCE",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "due_diligence-v1.docx"
+    },
+    {
+      "document_id": "conflict-004-financial_statements",
+      "document_type": "FINANCIAL_STATEMENTS",
+      "version": 1,
+      "status": "PARSED",
+      "filename": "financial_statements-v1.docx"
+    }
+  ],
+  "synthetic_only": true,
+  "recovery": {}
+}

@@ -1,0 +1,43 @@
+name: Manual External API Smoke
+
+on:
+  workflow_dispatch:
+    inputs:
+      enable_external:
+        description: "Explicitly allow a synthetic DashScope smoke call"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  dashscope-smoke:
+    if: ${{ inputs.enable_external == true }}
+    runs-on: windows-latest
+    env:
+      CREDIT_REVIEW_DASHSCOPE_API_KEY: ${{ secrets.CREDIT_REVIEW_DASHSCOPE_API_KEY }}
+      CREDIT_REVIEW_DASHSCOPE_BASE_URL: ${{ vars.CREDIT_REVIEW_DASHSCOPE_BASE_URL }}
+      CREDIT_REVIEW_MINERU_API_KEY: ${{ secrets.CREDIT_REVIEW_MINERU_API_KEY }}
+      CREDIT_REVIEW_MINERU_BASE_URL: ${{ vars.CREDIT_REVIEW_MINERU_BASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+      - name: Install locked dependencies
+        run: uv sync --locked
+      - name: Run synthetic external smoke
+        run: uv run python scripts/run_external_smoke.py --output artifacts/external-smoke/result.json
+      - name: Run synthetic MinerU smoke
+        run: uv run python scripts/run_mineru_smoke.py --output artifacts/external-smoke/mineru-result.json
+      - name: Upload redacted smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: creditguard-external-smoke
+          path: artifacts/external-smoke

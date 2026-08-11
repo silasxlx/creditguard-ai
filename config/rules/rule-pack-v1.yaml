@@ -1,0 +1,54 @@
+schema_version: "1.0"
+version: "1.0.0"
+name: "credit-review-poc-rules"
+allowed_operators:
+  - eq
+  - ne
+  - gt
+  - gte
+  - lt
+  - lte
+  - in
+  - not_in
+  - is_present
+rules:
+  - id: R01
+    name: "四类必需材料完整"
+    predicate: required_materials
+    query_template: "四类必需授信材料是否完整且解析可用"
+  - id: R02
+    name: "企业成立年限不少于1年"
+    predicate: company_age
+    query_template: "企业成立日期与审查日期是否满一个日历年"
+  - id: R03
+    name: "行业不属于禁止准入"
+    predicate: industry_admission
+    query_template: "所属行业允许受限禁止准入分类及制度依据"
+  - id: R04
+    name: "黑名单查询结果为否"
+    predicate: blacklist_clear
+    query_template: "客户黑名单是否命中及查询失败处理"
+  - id: R05
+    name: "客户风险状态正常"
+    predicate: customer_risk
+    query_template: "客户风险状态NORMAL WATCH HIGH_RISK的审查要求"
+  - id: R06
+    name: "流动资金贷款用途在允许范围"
+    predicate: loan_purpose
+    query_template: "流动资金贷款允许用途和禁止用途"
+  - id: R07
+    name: "申请期限不超过36个月"
+    predicate: tenor_limit
+    query_template: "流动资金贷款期限不得超过36个月的制度条款"
+  - id: R08
+    name: "申请金额不超过可用授信额度"
+    predicate: available_exposure
+    query_template: "申请金额可用授信额度和币种一致性"
+  - id: R09
+    name: "资产负债率不超过70%"
+    predicate: leverage_ratio
+    query_template: "资产负债率70%边界及计算公式"
+  - id: R10
+    name: "流动比率不低于1.0"
+    predicate: current_ratio
+    query_template: "流动比率1.0边界及计算公式"

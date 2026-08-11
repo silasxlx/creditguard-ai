@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "conflicts": [
+    {
+      "field": "F10",
+      "material": true,
+      "candidate_values": [
+        "5000000",
+        "5200000"
+      ],
+      "selected_value": "5200000",
+      "action": "ENTER_REVISED_VALUE"
+    }
+  ],
+  "expected_gate": null,
+  "human_action_required": true
+}

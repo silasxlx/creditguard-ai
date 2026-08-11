@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "conflicts": [
+    {
+      "field": "F02",
+      "material": true,
+      "candidate_values": [
+        "91310000SYNTH001",
+        "91310000SYNTH999"
+      ],
+      "selected_value": "91310000SYNTH001",
+      "action": "SELECT_SOURCE"
+    }
+  ],
+  "expected_gate": null,
+  "human_action_required": true
+}

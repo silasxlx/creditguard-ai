@@ -1,0 +1,22 @@
+:root {
+  color: #172033;
+  background: #f4f7fb;
+  font-family: Inter, "Microsoft YaHei", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 42px 28px 72px; }
+.topbar, .status-card, .panel-heading { display: flex; justify-content: space-between; gap: 24px; align-items: center; }
+.eyebrow, .label { color: #6a7893; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+h1 { margin: 8px 0 0; font-size: clamp(26px, 4vw, 42px); }
+h2 { margin: 8px 0 0; font-size: 24px; }
+.role-switch { display: flex; align-items: center; gap: 12px; color: #6a7893; }
+.status-card, .panel { margin-top: 28px; border: 1px solid #e2e8f2; border-radius: 18px; background: #fff; box-shadow: 0 12px 30px rgb(30 55 90 / 6%); }
+.status-card { padding: 22px 24px; }
+.status-card strong { display: block; margin-top: 6px; }
+.panel { padding: 24px; }
+.panel-heading { margin-bottom: 20px; }
+@media (max-width: 700px) { .topbar, .status-card { align-items: flex-start; flex-direction: column; } .shell { padding: 28px 16px; } }
