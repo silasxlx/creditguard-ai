@@ -243,8 +243,8 @@
 - 预期结果：无API Key、Authorization、请求ID、真实客户数据、本机路径或原始外部响应；媒体无终端和个人浏览器信息。
 - 异常或边界条件：EXIF元数据、隐藏帧、压缩包内部文件、示例.env和错误日志。
 - 自动化状态：MANUAL
-- 最近执行结果：PASS（2026-08-11；公开文档与媒体扫描通过，四张PNG和GIF人工复核；Release创建后将再次核对资产）。
-- 证据或日志引用：`scripts/check_release_docs.py`；`docs/assets/`；`docs/acceptance/poc-v0.1.0.md`。
+- 最近执行结果：PASS（2026-08-11；公开文档与媒体扫描通过，四张PNG和GIF人工复核，Release资产核对通过）。
+- 证据或日志引用：`scripts/check_release_docs.py`；`docs/assets/`；`docs/acceptance/poc-v0.1.0.md`；[v0.1.0 Release](https://github.com/silasxlx/creditguard-ai/releases/tag/v0.1.0)。
 
 ## TC-SEC-022 GitHub Workflow最小权限与Secrets隔离
 

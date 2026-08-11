@@ -378,5 +378,5 @@
 - 预期结果：三个检查全绿；main禁止强推/删除；v0.1.0指向最终绿色提交；Release说明和资产可访问。
 - 异常或边界条件：仓库名冲突、CI失败、保护规则未生效、标签指向错误或Release资产缺失。
 - 自动化状态：MANUAL
-- 最近执行结果：IN_PROGRESS（2026-08-11；backend/frontend/e2e已在GitHub Actions运行`31459709982`通过，待完成分支保护、标签和Release核验）。
-- 证据或日志引用：GitHub Actions运行`31459709982`；待补充分支规则和Release链接。
+- 最近执行结果：PASS（2026-08-11；backend/frontend/e2e在GitHub Actions运行`31460201239`通过，main分支保护已生效，v0.1.0 Release已创建）。
+- 证据或日志引用：[GitHub Actions运行31460201239](https://github.com/silasxlx/creditguard-ai/actions/runs/31460201239)；[v0.1.0 Release](https://github.com/silasxlx/creditguard-ai/releases/tag/v0.1.0)。

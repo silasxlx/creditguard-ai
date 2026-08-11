@@ -25,7 +25,7 @@
 | SPEC-003 | [授信审查 PoC 技术架构 V1.0](./SPEC-003-credit-review-architecture-poc-v1.md) | APPROVED | 单机架构、解析、RAG、LangGraph、Worker、安全和运行方式 |
 | SPEC-004 | [授信审查 PoC 接口与数据契约 V1.0](./SPEC-004-credit-review-contracts-poc-v1.md) | APPROVED | REST API、状态、State、数据表、规则、工具和HITL契约 |
 | SPEC-005 | [授信审查 PoC 评测规范 V1.0](./SPEC-005-credit-review-evaluation-poc-v1.md) | APPROVED | 合成评测集、质量指标、硬门槛、CI和测试追溯 |
-| SPEC-006 | [GitHub 发布与完整演示规范 V1.0](./SPEC-006-github-release-and-demo-v1.md) | VERIFIED | 完整网页演示、公开文档、CI、GitHub治理和v0.1.0发布 |
+| SPEC-006 | [GitHub 发布与完整演示规范 V1.0](./SPEC-006-github-release-and-demo-v1.md) | DONE | 完整网页演示、公开文档、CI、GitHub治理和v0.1.0发布 |
 
 SPEC-001 是长期产品目标；SPEC-002～005 是第一阶段 PoC 覆盖规范，SPEC-006 是 GitHub 公开交付规范。PoC 明确收窄基础设施和评测规模，但不修改或删除 SPEC-001 正文。SPEC-006 进入 `APPROVED` 前不得开始演示与发布实现。
 
