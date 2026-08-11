@@ -141,3 +141,16 @@
 - 自动化状态：AUTOMATED
 - 最近执行结果：PASS（2026-08-10；`run_eval.py --strict`）。
 - 证据或日志引用：`scripts/run_eval.py`；`artifacts/evaluations/local-baseline/summary.json`。
+
+## TC-DOC-014 GitHub演示材料解析与证据定位
+
+- 关联 Spec / FR / User Story：SPEC-006 第6节；AC-006-02
+- 测试目标：验证正常和高风险两组合成PDF、DOCX、XLSX材料可通过正式解析链路并生成稳定证据定位。
+- 前置条件：两组演示材料及manifest、SHA256已生成；全部材料标记为纯合成数据。
+- 输入数据：DEMO-NORMAL-001、DEMO-HIGH-001各四份演示材料。
+- 执行步骤：校验清单Hash；依次上传并解析；核对15个事实字段及PDF页/块、DOCX标题/段落、XLSX工作表/单元格定位。
+- 预期结果：正常案件期限候选一致；高风险案件准确产生24个月与48个月两个候选；财务指标可计算；所有证据可回查到材料版本。
+- 异常或边界条件：材料缺失、Hash漂移、格式损坏、字段不可定位或包含非合成数据声明。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记演示材料生成脚本、解析测试和执行报告。

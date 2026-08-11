@@ -193,3 +193,68 @@
 - 自动化状态：MANUAL
 - 最近执行结果：PASS（2026-08-11；DashScope embedding/reranker与MinerU v4均成功，证据已脱敏）。
 - 证据或日志引用：`scripts/run_external_smoke.py`；`scripts/run_mineru_smoke.py`；`artifacts/external-smoke/final-acceptance-dashscope.json`；`final-acceptance-mineru.json`。
+
+## TC-SEC-018 非Demo模式隐藏场景初始化接口
+
+- 关联 Spec / FR / User Story：SPEC-006 第7、8节；AC-006-03、AC-006-08
+- 测试目标：验证普通启动方式不会注册Demo场景初始化路由。
+- 前置条件：CREDIT_REVIEW_DEMO_MODE未设置或为false。
+- 输入数据：POST /api/v1/demo/scenarios/DEMO-NORMAL-001。
+- 执行步骤：检查OpenAPI路径；调用Demo接口；检查业务库和上传目录。
+- 预期结果：OpenAPI不包含Demo路由；调用返回404；不产生案件、材料、任务、Run或文件。
+- 异常或边界条件：大小写环境变量、进程重启、测试配置残留和直接导入应用。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记安全契约测试。
+
+## TC-SEC-019 Demo接口固定场景与输入白名单
+
+- 关联 Spec / FR / User Story：SPEC-006 第7节；AC-006-03、AC-006-08
+- 测试目标：验证Demo接口不能读取任意路径、URL或创建未登记场景。
+- 前置条件：Demo模式启用；两个固定清单有效。
+- 输入数据：未知scenario_id、路径穿越、编码路径、URL样式、SQL和额外请求体。
+- 执行步骤：逐项请求接口；检查Problem Details、审计事件、业务库和文件系统。
+- 预期结果：仅两个精确场景ID可用；恶意输入返回404或422；无任意文件/网络访问和部分写入。
+- 异常或边界条件：双重编码、反斜杠、超长输入、Unicode混淆和幂等键冲突。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记参数化安全测试。
+
+## TC-SEC-020 报告Markdown与恶意HTML清洗
+
+- 关联 Spec / FR / User Story：SPEC-006 第8节；AC-006-08
+- 测试目标：验证报告Markdown不会通过脚本、事件属性或危险URL执行前端代码。
+- 前置条件：报告页面使用禁用原始HTML并经过清洗的渲染链路。
+- 输入数据：script、img onerror、svg/onload、iframe、javascript URL和HTML实体混淆样本。
+- 执行步骤：将恶意内容放入报告摘要和风险解释；打开Reviewer/RM报告页面；检查DOM和浏览器事件。
+- 预期结果：危险节点和属性被移除或转义；无脚本执行、外部请求或DOM注入；正常Markdown可读。
+- 异常或边界条件：嵌套标签、编码绕过、超长Markdown和返回报告刷新。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记Vitest和Playwright安全用例。
+
+## TC-SEC-021 公开仓库与演示资产脱敏
+
+- 关联 Spec / FR / User Story：SPEC-006 第9～11节；AC-006-09、AC-006-11
+- 测试目标：验证Git跟踪文件、README、验收报告、PNG、GIF和Release资产只包含合成数据。
+- 前置条件：公开交付文件和媒体已生成并暂存。
+- 输入数据：git ls-files、Release材料包和全部公开媒体。
+- 执行步骤：运行密钥/绝对路径/PII模式扫描；检查图片和GIF帧；核对合成数据声明与验收报告字段。
+- 预期结果：无API Key、Authorization、请求ID、真实客户数据、本机路径或原始外部响应；媒体无终端和个人浏览器信息。
+- 异常或边界条件：EXIF元数据、隐藏帧、压缩包内部文件、示例.env和错误日志。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记公开资产扫描和人工视觉复核。
+
+## TC-SEC-022 GitHub Workflow最小权限与Secrets隔离
+
+- 关联 Spec / FR / User Story：SPEC-006 第11、12节；AC-006-10、AC-006-11
+- 测试目标：验证普通push、PR和fork不能读取外部服务Secrets或调用真实DashScope/MinerU。
+- 前置条件：CI、E2E和手动外部冒烟Workflow已定义。
+- 输入数据：Workflow YAML、fork/PR触发条件和GitHub权限配置。
+- 执行步骤：静态检查permissions、events和Secret引用；运行普通CI；核对网络调用与Artifact内容。
+- 预期结果：普通Workflow仅contents:read并使用本地Mock；只有workflow_dispatch外部冒烟引用Secrets；首次发布未配置现有本机密钥。
+- 异常或边界条件：pull_request_target、可写GITHUB_TOKEN、Artifact泄露、日志展开环境变量和依赖脚本绕过。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记Workflow安全检查和GitHub Actions日志。

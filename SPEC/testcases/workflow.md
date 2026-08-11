@@ -289,3 +289,94 @@
 - 自动化状态：MANUAL
 - 最近执行结果：PASS（2026-08-11；真实外部冒烟、后端/前端检查、迁移、评测和安全门槛均通过）。
 - 证据或日志引用：`artifacts/external-smoke/final-acceptance-dashscope.json`、`final-acceptance-mineru.json`；`artifacts/evaluations/final-acceptance/`。
+
+## TC-WF-024 受控Demo场景创建与幂等重放
+
+- 关联 Spec / FR / User Story：SPEC-006 第7节；AC-006-03
+- 测试目标：验证Demo API只创建两个固定合成场景，并复用正式案件、材料和Run服务。
+- 前置条件：Demo模式启用；演示材料清单Hash有效；业务库为空。
+- 输入数据：DEMO-NORMAL-001、DEMO-HIGH-001、demo-rm和固定Idempotency-Key。
+- 执行步骤：首次创建场景；使用相同幂等键重放；使用同一幂等键请求另一场景；检查案件、材料版本、任务和Run数量。
+- 预期结果：首次返回201；重放返回200且资源ID不变；参数冲突返回409；不产生重复案件、材料、任务或Run。
+- 异常或边界条件：未知场景、缺幂等键、清单Hash漂移和事务中途失败。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记后端契约测试和OpenAPI。
+
+## TC-WF-025 正常案件完整浏览器演示
+
+- 关联 Spec / FR / User Story：SPEC-006 第5～8节；AC-006-04
+- 测试目标：验证RM一键加载正常案件后无需HITL-1即可进入强制HITL-2并完成报告确认。
+- 前置条件：API、Worker、Web和Demo模式运行；使用本地确定性模型与合成工具。
+- 输入数据：DEMO-NORMAL-001。
+- 执行步骤：RM加载场景并查看材料/进度；切换Reviewer查看规则和证据；确认报告；切回RM查看并导出。
+- 预期结果：R01～R10全部PASS；Run进入WAITING_REPORT_REVIEW；Reviewer确认后COMPLETED；RM只能在确认后查看完整报告。
+- 异常或边界条件：Worker处理延迟、页面刷新、轮询失败和重复点击。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记Playwright Trace、截图和CI运行。
+
+## TC-WF-026 高风险冲突裁定与R07失败浏览器演示
+
+- 关联 Spec / FR / User Story：SPEC-006 第5～8节；AC-006-05
+- 测试目标：验证24/48个月冲突进入HITL-1，Reviewer采用48个月后R07失败且报告保留人工记录。
+- 前置条件：API、Worker、Web和Demo模式运行；使用本地确定性模型与合成工具。
+- 输入数据：DEMO-HIGH-001。
+- 执行步骤：RM加载场景；Reviewer查看两个期限候选及证据；选择尽调报告48个月并填写原因；恢复Run；查看R07和报告并确认。
+- 预期结果：裁定前WAITING_FACT_REVIEW；恢复后R07=FAIL、summary_outcome=NON_COMPLIANT；报告包含原值、采用值、证据和人工原因。
+- 异常或边界条件：空原因、过期快照、重复提交、选择24个月或刷新后恢复。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记Playwright Trace、截图和CI运行。
+
+## TC-WF-027 RM手工创建上传与启动路径
+
+- 关联 Spec / FR / User Story：SPEC-006 第5、6、8节；AC-006-06
+- 测试目标：验证不依赖一键场景接口时，RM仍可通过网页创建案件、上传四类材料并启动审查。
+- 前置条件：API、Worker和Web运行；Demo模式可以关闭；提供正常案件合成材料。
+- 输入数据：DEMO-NORMAL-001四份材料及案件基本信息。
+- 执行步骤：创建案件；逐份上传；核对材料类型和版本；选择当前有效版本；启动Run；查看进度。
+- 预期结果：四份材料均生成可见版本；Run返回202并进入Worker处理；重复写操作不创建重复资源。
+- 异常或边界条件：缺件、非法格式、重复文件、上传失败、过期案件版本和非RM角色。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记Playwright用例与上传契约测试。
+
+## TC-WF-028 OpenAPI生成类型漂移检查
+
+- 关联 Spec / FR / User Story：SPEC-006 第8、12节；AC-006-07
+- 测试目标：验证FastAPI OpenAPI生成的TypeScript类型已跟踪且前后端契约无漂移。
+- 前置条件：锁定Python和npm依赖；生成脚本可重复运行。
+- 输入数据：当前FastAPI OpenAPI Schema。
+- 执行步骤：重新导出OpenAPI并生成TypeScript；比较Git跟踪文件；运行前端类型检查和构建。
+- 预期结果：重生成无Git差异；前端不维护冲突的手写接口类型；类型检查和构建通过。
+- 异常或边界条件：Schema字段变更、枚举漂移、生成器版本变化和未提交生成文件。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记生成脚本和GitHub Actions日志。
+
+## TC-WF-029 README文档与演示媒体完整性
+
+- 关联 Spec / FR / User Story：SPEC-006 第9、10节；AC-006-01、AC-006-09
+- 测试目标：验证README、架构、演示、验收、社区文档及固定PNG/GIF可公开使用。
+- 前置条件：SPEC-006已APPROVED；文档和媒体生成完成。
+- 输入数据：README、docs、社区文件和媒体清单。
+- 执行步骤：检查必需章节、相对链接、Mermaid、文件存在性、图片尺寸、GIF大小和合成数据声明。
+- 预期结果：所有链接有效；四张PNG和一张不超过8MB的GIF存在；无空占位、失效路径或未评审实现声明。
+- 异常或边界条件：大小写路径差异、GitHub无法渲染、媒体超限、文档与实现状态不一致。
+- 自动化状态：PLANNED
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待实现后登记文档校验脚本和人工视觉复核。
+
+## TC-WF-030 GitHub CI分支保护与v0.1.0发布
+
+- 关联 Spec / FR / User Story：SPEC-006 第11～14节；AC-006-01、AC-006-10、AC-006-12
+- 测试目标：验证公开仓库、CI、main分支保护、标签和Release符合首版发布契约。
+- 前置条件：本地全部门槛通过；当前GitHub账户已认证；SPEC-006处于VERIFIED候选状态。
+- 输入数据：公开creditguard-ai仓库、最终main提交、v0.1.0发布资产。
+- 执行步骤：核对仓库可见性和元数据；等待backend/frontend/e2e通过；检查分支保护；核对标签目标和Release资产。
+- 预期结果：三个检查全绿；main禁止强推/删除；v0.1.0指向最终绿色提交；Release说明和资产可访问。
+- 异常或边界条件：仓库名冲突、CI失败、保护规则未生效、标签指向错误或Release资产缺失。
+- 自动化状态：MANUAL
+- 最近执行结果：NOT_RUN
+- 证据或日志引用：待发布后登记GitHub Actions、分支规则和Release链接。

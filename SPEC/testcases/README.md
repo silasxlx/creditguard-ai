@@ -6,16 +6,16 @@
 
 | 领域 | 文件 | 编号前缀 | SPEC-001 基线 | 当前已登记 |
 |---|---|---|---|---|
-| 文档解析 | [document.md](./document.md) | `TC-DOC-` | 001～003 | 004～013 |
+| 文档解析 | [document.md](./document.md) | `TC-DOC-` | 001～003 | 004～014 |
 | RAG | [rag.md](./rag.md) | `TC-RAG-` | 001～004 | 005～013 |
 | 规则引擎 | [rule.md](./rule.md) | `TC-RULE-` | 001～004 | 005～012 |
 | Agent | [agent.md](./agent.md) | `TC-AGENT-` | 001～003 | 004～014 |
-| Workflow | [workflow.md](./workflow.md) | `TC-WF-` | 001～002 | 003～023 |
-| Security | [security.md](./security.md) | `TC-SEC-` | 001～003 | 004～017 |
+| Workflow | [workflow.md](./workflow.md) | `TC-WF-` | 001～002 | 003～030 |
+| Security | [security.md](./security.md) | `TC-SEC-` | 001～003 | 004～022 |
 
 已有基线测试的正文仍以 [SPEC-001 第 43～49 节](../SPEC-001-credit-review-platform-v1.md#43-test-strategy) 为准，本目录只登记引用，不复制第二份正文。
 
-PoC 新增样例依据 [SPEC-002](../SPEC-002-credit-review-poc-scope-v1.md)、[SPEC-003](../SPEC-003-credit-review-architecture-poc-v1.md)、[SPEC-004](../SPEC-004-credit-review-contracts-poc-v1.md) 和 [SPEC-005](../SPEC-005-credit-review-evaluation-poc-v1.md) 登记。尚未实现的领域保持 `PLANNED / NOT_RUN`；已完成实现的样例必须登记自动化状态、执行结果和代码证据，例如 `TC-WF-018`。
+PoC 新增样例依据 [SPEC-002](../SPEC-002-credit-review-poc-scope-v1.md)、[SPEC-003](../SPEC-003-credit-review-architecture-poc-v1.md)、[SPEC-004](../SPEC-004-credit-review-contracts-poc-v1.md)、[SPEC-005](../SPEC-005-credit-review-evaluation-poc-v1.md) 和 [SPEC-006](../SPEC-006-github-release-and-demo-v1.md) 登记。尚未实现的领域保持 `PLANNED / NOT_RUN`；已完成实现的样例必须登记自动化状态、执行结果和代码证据，例如 `TC-WF-018`。
 
 ## 测试样例模板
 
