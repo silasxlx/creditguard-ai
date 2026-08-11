@@ -4,10 +4,10 @@
       "rule_id": "R01",
       "query": "四类必需授信材料是否完整且解析可用",
       "relevant_chunk_ids": [
-        "b9a9059c0a74f461abe9efc89b2fdd0968ed0dbefe947e266f7dab482e792b12"
+        "4fd2760069853bc498cad5d98111f470a01e9dc6d6cc43f323b9871079aa81f7"
       ],
       "relevance_grade": {
-        "b9a9059c0a74f461abe9efc89b2fdd0968ed0dbefe947e266f7dab482e792b12": 3
+        "4fd2760069853bc498cad5d98111f470a01e9dc6d6cc43f323b9871079aa81f7": 3
       }
     },
     {
@@ -64,20 +64,20 @@
       "rule_id": "R07",
       "query": "流动资金贷款期限不得超过36个月的制度条款",
       "relevant_chunk_ids": [
-        "70bf31659f0cc9510138f967cc210a84f4dfe26e8e46829dadb30f4f3a577eb0"
+        "43d3d5893d9256e3499cd7b8eef3210c87ee497971c22d5629f8e766455dabae"
       ],
       "relevance_grade": {
-        "70bf31659f0cc9510138f967cc210a84f4dfe26e8e46829dadb30f4f3a577eb0": 3
+        "43d3d5893d9256e3499cd7b8eef3210c87ee497971c22d5629f8e766455dabae": 3
       }
     },
     {
       "rule_id": "R08",
       "query": "申请金额可用授信额度和币种一致性",
       "relevant_chunk_ids": [
-        "b9a9059c0a74f461abe9efc89b2fdd0968ed0dbefe947e266f7dab482e792b12"
+        "4fd2760069853bc498cad5d98111f470a01e9dc6d6cc43f323b9871079aa81f7"
       ],
       "relevance_grade": {
-        "b9a9059c0a74f461abe9efc89b2fdd0968ed0dbefe947e266f7dab482e792b12": 3
+        "4fd2760069853bc498cad5d98111f470a01e9dc6d6cc43f323b9871079aa81f7": 3
       }
     },
     {

@@ -1,6 +1,8 @@
-# CreditReview-Eval-PoC-V1
+# CreditReview-Eval-V1
 
-离线评测集全部为合成数据。使用以下命令重新生成固定夹具：
+离线评测集全部使用合成数据，覆盖正常、规则边界、材料冲突、缺件、工具失败和恢复场景。
+
+重新生成固定夹具：
 
 ```powershell
 uv run python scripts/generate_eval_fixtures.py --force
@@ -23,5 +25,4 @@ costs.json
 traces/
 ```
 
-评测集包含 20 个离线案件，另有 `fixtures/demo` 下的 2 个演示案件。固定制度源文本位于
-`config/policies/synthetic-v1`，工具夹具位于 `fixtures/tools/tools-v1.json`。
+固定制度源文本位于 `config/policies/synthetic-v1`，工具夹具位于 `fixtures/tools/tools-v1.json`。公开仓库不包含真实客户材料、真实制度或外部服务原始响应。

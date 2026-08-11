@@ -3,8 +3,8 @@ from __future__ import annotations
 import argparse
 import json
 import re
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
 TEXT_SUFFIXES = {
@@ -80,7 +80,7 @@ def scan(root: Path = ROOT) -> list[dict[str, str]]:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Scan repository text for secrets and unsafe PoC artefacts.")
+    parser = argparse.ArgumentParser(description="Scan repository text for secrets and unsafe repository artefacts.")
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--json", action="store_true", dest="as_json")
     args = parser.parse_args()

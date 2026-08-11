@@ -131,7 +131,7 @@ class ReviewRun(Base):
     error_code: Mapped[str | None] = mapped_column(String(80), nullable=True)
     input_manifest_hash: Mapped[str] = mapped_column(String(64))
     document_version_ids: Mapped[list[str]] = mapped_column(JSON)
-    workflow_version: Mapped[str] = mapped_column(String(40), default="poc-1.0.0")
+    workflow_version: Mapped[str] = mapped_column(String(40), default="credit-review-1.0.0")
     rule_pack_version: Mapped[str] = mapped_column(String(40), default="1.0.0")
     policy_pack_version: Mapped[str] = mapped_column(String(80), default="synthetic-v1")
     policy_index_version: Mapped[str] = mapped_column(String(80), default="not-built")

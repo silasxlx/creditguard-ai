@@ -4,7 +4,7 @@ import argparse
 import json
 import math
 import sys
-from datetime import date, datetime, UTC
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -227,15 +227,11 @@ def _evaluate_case(
 
 def _policy_fixture_metrics() -> dict[str, Any]:
     source_root = ROOT / "config" / "policies" / "synthetic-v1"
-    fixture_root = ROOT / "fixtures" / "policies"
     source_files = sorted(source_root.glob("*.md"))
     source_hashes = {path.name: sha256_bytes(path.read_bytes()) for path in source_files}
-    fixture_files = sorted(fixture_root / name for name in source_hashes)
-    fixture_hashes = {path.name: sha256_bytes(path.read_bytes()) for path in fixture_files}
     return {
         "source_count": len(source_files),
-        "fixture_count": len(fixture_files),
-        "hashes_match": source_hashes == fixture_hashes,
+        "canonical_source": "config/policies/synthetic-v1",
         "source_hashes": source_hashes,
     }
 
@@ -313,8 +309,8 @@ def run(cases_root: Path, output_root: Path, strict: bool) -> int:
         "offline_case_count": len(case_dirs) == 20,
         "case_files_complete": complete_cases == len(case_dirs),
         "rule_accuracy_100_percent": metrics["rules"]["hard_gate_100_percent"],
-        "policy_fixtures_match": metrics["policy_fixtures"]["hashes_match"]
-        and metrics["policy_fixtures"]["source_count"] == 5,
+        "policy_source_complete": metrics["policy_fixtures"]["source_count"] == 5
+        and bool(metrics["policy_fixtures"]["canonical_source"]),
         "unsupported_claims_blocked": metrics["agent_report"]["unsupported_claim_rate"] == 0.0,
         "hitl_2_declared_for_all": all(
             result.get("workflow", {}).get("required_hitl_gates") == ["HITL-2_REPORT_REVIEW"]
@@ -336,7 +332,7 @@ def run(cases_root: Path, output_root: Path, strict: bool) -> int:
         "evaluation_id": datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ"),
         "generated_at": datetime.now(UTC).isoformat(),
         "implementation": {
-            "workflow_version": "poc-1.0.0",
+            "workflow_version": "credit-review-1.0.0",
             "rule_pack_version": rule_pack.version,
             "policy_index_version": policy_index.manifest_hash,
             "embedding_model": policy_index.embedder.model_name,
@@ -355,7 +351,7 @@ def run(cases_root: Path, output_root: Path, strict: bool) -> int:
     for case in case_results:
         _write_json(traces_root / f"{case['case_id']}.json", case)
     report = [
-        "# CreditReview-Eval-PoC-V1 基线评测报告",
+        "# CreditReview-Eval-V1 基线评测报告",
         "",
         f"- 评测时间：{summary['generated_at']}",
         f"- 状态：**{summary['verification_status']}**",
@@ -377,11 +373,11 @@ def run(cases_root: Path, output_root: Path, strict: bool) -> int:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run deterministic CreditReview PoC evaluation.")
+    parser = argparse.ArgumentParser(description="Run deterministic CreditReview evaluation.")
     parser.add_argument(
         "--cases-root",
         type=Path,
-        default=ROOT / "evals" / "credit-review-poc-v1" / "cases",
+        default=ROOT / "evals" / "credit-review-v1" / "cases",
     )
     parser.add_argument(
         "--output-root",

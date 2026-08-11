@@ -20,4 +20,4 @@ if (-not $ApiOnly -and -not $WorkerOnly) {
     Start-Process -WindowStyle Hidden -FilePath "npm.cmd" -ArgumentList "--prefix web run dev" -WorkingDirectory $PSScriptRoot
 }
 
-Write-Host "CreditGuard AI PoC services started. API: http://127.0.0.1:8000/docs"
+Write-Host "CreditGuard AI services started. API: http://127.0.0.1:8000/docs"

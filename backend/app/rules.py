@@ -78,7 +78,7 @@ def load_rule_pack(path: Path) -> RulePack:
             )
         )
     if [definition.rule_id for definition in definitions] != [f"R{i:02d}" for i in range(1, 11)]:
-        raise ValueError("PoC rule pack must contain R01 through R10 in order")
+        raise ValueError("Credit review rule pack must contain R01 through R10 in order")
     return RulePack(
         version=str(payload["version"]),
         name=str(payload["name"]),
