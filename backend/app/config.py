@@ -25,6 +25,8 @@ class Settings(BaseSettings):
     dashscope_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     dashscope_api_key: str | None = None
     use_remote_models: bool = False
+    generation_model: str = "qwen3.6-flash"
+    demo_mode: bool = False
 
     @property
     def business_db_path(self) -> Path:

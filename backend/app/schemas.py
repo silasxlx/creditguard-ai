@@ -122,6 +122,16 @@ class CaseListResponse(ApiModel):
     next_cursor: str | None = None
 
 
+class DemoScenarioResponse(ApiModel):
+    scenario_id: str
+    case_id: str
+    run_id: str
+    case_version: int
+    input_document_version_ids: list[str]
+    run_status: RunStatus
+    created: bool
+
+
 class DocumentListResponse(ApiModel):
     items: list[DocumentResponse]
     next_cursor: str | None = None

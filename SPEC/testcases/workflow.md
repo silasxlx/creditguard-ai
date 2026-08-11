@@ -299,9 +299,9 @@
 - 执行步骤：首次创建场景；使用相同幂等键重放；使用同一幂等键请求另一场景；检查案件、材料版本、任务和Run数量。
 - 预期结果：首次返回201；重放返回200且资源ID不变；参数冲突返回409；不产生重复案件、材料、任务或Run。
 - 异常或边界条件：未知场景、缺幂等键、清单Hash漂移和事务中途失败。
-- 自动化状态：PLANNED
-- 最近执行结果：NOT_RUN
-- 证据或日志引用：待实现后登记后端契约测试和OpenAPI。
+- 自动化状态：AUTOMATED
+- 最近执行结果：PASS（2026-08-11；Demo API首次创建、幂等重放和未知场景检查通过）。
+- 证据或日志引用：`backend/tests/test_demo.py`；本地API冒烟记录（201/200/404）。
 
 ## TC-WF-025 正常案件完整浏览器演示
 
@@ -312,9 +312,9 @@
 - 执行步骤：RM加载场景并查看材料/进度；切换Reviewer查看规则和证据；确认报告；切回RM查看并导出。
 - 预期结果：R01～R10全部PASS；Run进入WAITING_REPORT_REVIEW；Reviewer确认后COMPLETED；RM只能在确认后查看完整报告。
 - 异常或边界条件：Worker处理延迟、页面刷新、轮询失败和重复点击。
-- 自动化状态：PLANNED
-- 最近执行结果：NOT_RUN
-- 证据或日志引用：待实现后登记Playwright Trace、截图和CI运行。
+- 自动化状态：MANUAL
+- 最近执行结果：PASS（2026-08-11；本地Chrome浏览器路径通过，报告进入`AWAITING_REVIEW`）。
+- 证据或日志引用：`docs/assets/dashboard.png`、`docs/assets/report-review.png`；`web/tests/e2e/demo.spec.ts`（CI自动化用例）。
 
 ## TC-WF-026 高风险冲突裁定与R07失败浏览器演示
 
@@ -325,9 +325,9 @@
 - 执行步骤：RM加载场景；Reviewer查看两个期限候选及证据；选择尽调报告48个月并填写原因；恢复Run；查看R07和报告并确认。
 - 预期结果：裁定前WAITING_FACT_REVIEW；恢复后R07=FAIL、summary_outcome=NON_COMPLIANT；报告包含原值、采用值、证据和人工原因。
 - 异常或边界条件：空原因、过期快照、重复提交、选择24个月或刷新后恢复。
-- 自动化状态：PLANNED
-- 最近执行结果：NOT_RUN
-- 证据或日志引用：待实现后登记Playwright Trace、截图和CI运行。
+- 自动化状态：MANUAL
+- 最近执行结果：PASS（2026-08-11；本地Chrome浏览器完成24/48冲突裁定、R07 FAIL、报告确认）。
+- 证据或日志引用：`docs/assets/fact-review.png`、`docs/assets/rule-results.png`、`docs/assets/report-review.png`；`web/tests/e2e/demo.spec.ts`（CI自动化用例）。
 
 ## TC-WF-027 RM手工创建上传与启动路径
 
@@ -339,8 +339,8 @@
 - 预期结果：四份材料均生成可见版本；Run返回202并进入Worker处理；重复写操作不创建重复资源。
 - 异常或边界条件：缺件、非法格式、重复文件、上传失败、过期案件版本和非RM角色。
 - 自动化状态：PLANNED
-- 最近执行结果：NOT_RUN
-- 证据或日志引用：待实现后登记Playwright用例与上传契约测试。
+- 最近执行结果：NOT_RUN（保留为独立的发布前门槛）。
+- 证据或日志引用：前端路径已实现于`web/src/App.vue`；待CI Chromium上传用例执行。
 
 ## TC-WF-028 OpenAPI生成类型漂移检查
 
@@ -351,9 +351,9 @@
 - 执行步骤：重新导出OpenAPI并生成TypeScript；比较Git跟踪文件；运行前端类型检查和构建。
 - 预期结果：重生成无Git差异；前端不维护冲突的手写接口类型；类型检查和构建通过。
 - 异常或边界条件：Schema字段变更、枚举漂移、生成器版本变化和未提交生成文件。
-- 自动化状态：PLANNED
-- 最近执行结果：NOT_RUN
-- 证据或日志引用：待实现后登记生成脚本和GitHub Actions日志。
+- 自动化状态：AUTOMATED
+- 最近执行结果：PASS（2026-08-11；OpenAPI导出、TypeScript重生成和工作区差异检查通过）。
+- 证据或日志引用：`scripts/export_openapi.py`；`web/src/generated/openapi.ts`；`.github/workflows/ci.yml`。
 
 ## TC-WF-029 README文档与演示媒体完整性
 
@@ -364,9 +364,9 @@
 - 执行步骤：检查必需章节、相对链接、Mermaid、文件存在性、图片尺寸、GIF大小和合成数据声明。
 - 预期结果：所有链接有效；四张PNG和一张不超过8MB的GIF存在；无空占位、失效路径或未评审实现声明。
 - 异常或边界条件：大小写路径差异、GitHub无法渲染、媒体超限、文档与实现状态不一致。
-- 自动化状态：PLANNED
-- 最近执行结果：NOT_RUN
-- 证据或日志引用：待实现后登记文档校验脚本和人工视觉复核。
+- 自动化状态：AUTOMATED
+- 最近执行结果：PASS（2026-08-11；文档链接、媒体存在性、GIF大小和敏感模式检查通过；截图已人工复核）。
+- 证据或日志引用：`scripts/check_release_docs.py`；`docs/assets/`。
 
 ## TC-WF-030 GitHub CI分支保护与v0.1.0发布
 

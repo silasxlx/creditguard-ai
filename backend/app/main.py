@@ -8,7 +8,9 @@ from fastapi import Depends, FastAPI, File, Form, Header, Query, UploadFile, sta
 from fastapi.responses import JSONResponse, Response
 from sqlalchemy.orm import Session
 
+from .config import get_settings
 from .db import get_db, init_business_db
+from .demo import SCENARIOS, create_demo_scenario, demo_response_payload
 from .errors import ServiceError
 from .fact_service import get_fact_view, submit_fact_review
 from .models import DocumentType, ReviewRun
@@ -19,6 +21,7 @@ from .schemas import (
     CaseDetailResponse,
     CaseListResponse,
     CaseResponse,
+    DemoScenarioResponse,
     DocumentListResponse,
     DocumentResponse,
     FactReviewRequest,
@@ -356,4 +359,37 @@ def export_report(
         content=report.markdown,
         media_type="text/markdown; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="credit-review-{run_id}.md"'},
+    )
+
+
+def post_demo_scenario(
+    scenario_id: str,
+    db: Session = Depends(get_db),
+    demo_user_id: Annotated[str | None, Header(alias="X-Demo-User-Id")] = None,
+    idempotency_key: Annotated[str, Header(alias="Idempotency-Key")] = "",
+) -> JSONResponse:
+    user = require_role(demo_user_id, "RM")
+    if not idempotency_key:
+        raise ServiceError(
+            "IDEMPOTENCY_KEY_REQUIRED", "Idempotency-Key is required for demo scenarios.", 400
+        )
+    if scenario_id not in SCENARIOS:
+        raise ServiceError("DEMO_SCENARIO_NOT_FOUND", "The demo scenario does not exist.", 404)
+    case, run, document_ids, created = create_demo_scenario(
+        db, scenario_id, user.user_id, idempotency_key
+    )
+    payload = DemoScenarioResponse(
+        **demo_response_payload(scenario_id, case, run, document_ids, created)
+    ).model_dump(mode="json")
+    return JSONResponse(status_code=201 if created else 200, content=payload)
+
+
+if get_settings().demo_mode:
+    app.add_api_route(
+        "/api/v1/demo/scenarios/{scenario_id}",
+        post_demo_scenario,
+        response_model=DemoScenarioResponse,
+        status_code=status.HTTP_201_CREATED,
+        methods=["POST"],
+        tags=["demo"],
     )

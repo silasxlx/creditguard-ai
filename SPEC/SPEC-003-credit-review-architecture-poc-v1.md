@@ -31,8 +31,13 @@ Vue 3 工作台
 | 前端 | Vue 3、TypeScript、Element Plus、npm |
 | 文档 | PyMuPDF、python-docx、openpyxl、MinerU API 兜底 |
 | RAG | jieba、BM25、FAISS `IndexFlatIP`、DashScope embedding/rerank |
-| 模型 | `qwen3.7-flash`、`text-embedding-v4`、`qwen3-rerank`，DashScope 北京端点 |
+| 模型 | `qwen3.6-flash`、`text-embedding-v4`、`qwen3-rerank`，DashScope 北京端点 |
 | 质量 | Ruff、Pyright、Pytest、ESLint、Vue 类型检查、Vitest、Playwright Chromium |
+
+生成模型通过 `CREDIT_REVIEW_GENERATION_MODEL` 配置，默认值为 `qwen3.6-flash`；每个 Run 在
+`model_profile.requested_model` 中记录该值。PoC 默认仍使用本地确定性实现（`provider=mock`），
+不会因为配置模型名而自动调用外部服务；启用真实模型调用时必须显式打开远程模型配置，并按
+评测规范记录模型、Prompt Hash、返回元数据和成本。
 
 `langgraph-checkpoint-sqlite` 作为显式依赖锁定，不依赖 LangGraph 的传递依赖碰巧安装。
 

@@ -154,3 +154,16 @@
 - 自动化状态：AUTOMATED
 - 最近执行结果：PASS（2026-08-10；`VERIFIED`）。
 - 证据或日志引用：`scripts/run_eval.py`；`artifacts/evaluations/local-baseline/`。
+
+## TC-AGENT-015 生成模型版本配置与Run追踪
+
+- 关联 Spec / FR / User Story：SPEC-003 第2节；SPEC-004 第5、11节；AC-003-05
+- 测试目标：验证默认生成模型为 `qwen3.6-flash`，且每个新Run保存请求模型版本，便于回放和评测比较。
+- 前置条件：未设置覆盖模型的环境变量；本地确定性Worker可用。
+- 输入数据：一组四份合成材料和新建Run请求。
+- 执行步骤：创建案件、上传材料、创建Run；读取Run契约和数据库中的 `model_profile`。
+- 预期结果：`model_profile.requested_model=qwen3.6-flash`；本地执行仍标记 `provider=mock`，不因默认配置访问外部API。
+- 异常或边界条件：显式模型覆盖、模型别名变更、远程服务未配置和重试恢复。
+- 自动化状态：AUTOMATED
+- 最近执行结果：PASS（2026-08-11；契约测试断言通过）。
+- 证据或日志引用：`backend/app/config.py`；`backend/app/service.py`；`backend/tests/test_contracts.py::test_case_document_run_contract_and_idempotency`。

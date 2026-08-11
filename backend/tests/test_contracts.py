@@ -163,6 +163,7 @@ def test_case_document_run_contract_and_idempotency(client: TestClient) -> None:
     assert duplicate_run.json()["id"] == run.json()["id"]
     assert run.json()["status"] == "QUEUED"
     assert run.json()["progress_percent"] == 0
+    assert run.json()["model_profile"]["requested_model"] == "qwen3.6-flash"
 
     with SessionLocal() as db:
         assert db.query(ReviewRun).count() == 1

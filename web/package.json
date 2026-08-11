@@ -7,17 +7,23 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "check": "vue-tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "generate:api": "openapi-typescript ../artifacts/openapi.json -o src/generated/openapi.ts",
+    "generate:e2e-materials": "uv run python ../scripts/generate_demo_materials.py --output ../artifacts/e2e-materials",
+    "e2e": "npm run generate:e2e-materials && playwright test"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "element-plus": "^2.9.7",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.7.0",
+    "@playwright/test": "^1.52.0",
     "jsdom": "^26.0.0",
+    "openapi-typescript": "^7.8.0",
     "typescript": "^5.8.2",
     "vite": "^6.2.3",
     "vitest": "^3.0.8",

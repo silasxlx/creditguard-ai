@@ -38,6 +38,17 @@ jobs:
           uv run python scripts/security_scan.py --json
           uv run python scripts/check_openapi_contract.py
           uv run python scripts/export_openapi.py
+          uv run python scripts/check_release_docs.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Verify generated TypeScript contract
+        run: |
+          npm.cmd --prefix web ci
+          npm.cmd --prefix web run generate:api
+          git diff --exit-code -- web/src/generated/openapi.ts
       - name: Upload evaluation evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -61,3 +72,42 @@ jobs:
           npm.cmd --prefix web run check
           npm.cmd --prefix web run test -- --run
           npm.cmd --prefix web run build
+
+  e2e:
+    needs: [backend, frontend]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install locked dependencies
+        run: |
+          uv sync --locked
+          npm.cmd --prefix web ci
+          Push-Location web
+          npx.cmd playwright install chromium
+          Pop-Location
+      - name: Start synthetic demo stack
+        shell: pwsh
+        run: |
+          $env:CREDIT_REVIEW_DEMO_MODE = "true"
+          $env:CREDIT_REVIEW_BUSINESS_DB = "$env:RUNNER_TEMP\creditguard-business.db"
+          $env:CREDIT_REVIEW_CHECKPOINT_DB = "$env:RUNNER_TEMP\creditguard-checkpoints.db"
+          $env:CREDIT_REVIEW_STORAGE_ROOT = "$env:RUNNER_TEMP\creditguard-storage"
+          $env:CREDIT_REVIEW_ALLOW_MEMORY_CHECKPOINT = "true"
+          $env:PYTHONPATH = "$pwd\backend"
+          Start-Process -WindowStyle Hidden -FilePath "uv" -ArgumentList "run uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000"
+          Start-Process -WindowStyle Hidden -FilePath "uv" -ArgumentList "run python -m app.worker"
+          Start-Process -WindowStyle Hidden -FilePath "npm.cmd" -ArgumentList "--prefix web run dev -- --host 127.0.0.1"
+          Start-Sleep -Seconds 8
+      - name: Browser acceptance
+        run: npm.cmd --prefix web run e2e

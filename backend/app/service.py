@@ -385,7 +385,10 @@ def create_run(
         input_manifest_hash=_manifest_hash(db, documents),
         document_version_ids=payload.document_version_ids,
         prompt_versions={"fact_extraction": "prompt-fact-v1"},
-        model_profile={"provider": "mock", "requested_model": "mock-qwen3.7-flash"},
+        model_profile={
+            "provider": "mock",
+            "requested_model": get_settings().generation_model,
+        },
     )
     db.add(run)
     db.flush()
