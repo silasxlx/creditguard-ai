@@ -2,6 +2,9 @@
 
 面向银行对公授信业务的 AI 合规审查助手。
 
+[![CI](https://github.com/silasxlx/creditguard-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/silasxlx/creditguard-ai/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/silasxlx/creditguard-ai)](LICENSE)
+
 将授信材料解析、事实抽取、矛盾检测、制度检索、规则校验和人工复核串成一条可追溯的审查链路。
 
 > 使用纯合成数据。系统提供 AI 辅助审查，不执行最终授信审批、额度决策或放款。
