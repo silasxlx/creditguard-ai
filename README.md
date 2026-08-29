@@ -9,6 +9,15 @@
 
 > 使用纯合成数据。系统提供 AI 辅助审查，不执行最终授信审批、额度决策或放款。
 
+## 30 秒验证（无需 API Key）
+
+默认本地演示和 CI 使用确定性 Mock、固定演示身份和纯合成材料，不需要外部模型密钥即可复现主要审查路径。
+
+- [演示 GIF 与四张关键界面图](docs/assets/demo.gif)
+- [逐步演示指南](docs/demo-guide.md)
+- [合成案件夹具](fixtures/demo/README.md)
+- `uv run pytest backend/tests/test_demo.py -q`（验证演示场景、材料格式与解析契约）
+
 ## 重点工程项目：授信智能合规审查平台
 
 ### 项目简介
